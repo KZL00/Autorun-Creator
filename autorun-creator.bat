@@ -7,6 +7,19 @@ cls
 set ver=1.0.0
 set license-file=license.txt
 set github=https://github.com/KZL00/Autorun-Creator
+cd Generated
+if not exist dir.autorun-creator goto fc
+if exist dir.autorun-creator goto fc2
+
+:fc
+mkdir Generated
+cd Generated
+echo DONT DELETE THIS FILE; >> dir.autorun-creator
+cd ..
+goto menu
+
+:fc2
+cd ..
 goto menu
 
 :menu
@@ -27,7 +40,6 @@ choice /c 1234 /n
 if %errorlevel%==1 goto new
 if %errorlevel%==2 goto info
 if %errorlevel%==3 goto github
-
 if %errorlevel%==4 exit
 
 :github
@@ -131,10 +143,13 @@ pause
 goto menu
 
 :comp
+cd ..
+cd ..
 cls
+start .\Generated
 echo [ Autorun Creator ]=====================================================================================================
 echo.
-echo Your AUTORUN file was successfully generated. The folder with the generated file is "Generated". Copy the AUTORUN file to your storage medium.
+echo Your AUTORUN file was successfully generated. Copy the AUTORUN file to your storage medium.
 echo.
 pause
 goto menu
